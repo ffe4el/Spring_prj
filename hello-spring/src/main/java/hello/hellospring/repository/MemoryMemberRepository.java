@@ -1,9 +1,12 @@
 package hello.hellospring.repository;
 
 import hello.hellospring.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+
+//@Repository //어노테이션을 꼭 추가해주어야한다.
 //implements를 이용해서 인터페이스를 불러들인다.
 public class MemoryMemberRepository implements MemberRepository{
     //이 맵과 해쉬맵은 뭐지...?

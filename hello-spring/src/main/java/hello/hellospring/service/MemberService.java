@@ -2,10 +2,14 @@ package hello.hellospring.service;
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+//어노테이션 등록을 안하면 그저 순수 자바일뿐...
+//@Service
 public class MemberService {
     //private final을 선언한 변수를 사용하면 재할당하지 못하며, 해당 필드,
     //메서드 별로 호출할 때마다 새로이 값이 할당(인스턴스화)한다.
@@ -13,6 +17,7 @@ public class MemberService {
 
     //위에 memberRepository에서 커맨드+n 눌러서 constructor 만들기
     //외부에서 new memberRepository를 생성하게끔 하기
+//    @Autowired //서비스와 레포지토리를 연결
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
