@@ -3,6 +3,8 @@ import hello.hellospring.domain.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 //import org.springframework.jdbc.core.JdbcTemplate;
 //import org.springframework.jdbc.core.RowMapper;
 //import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -28,23 +30,33 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
     
     @Override
     public Member save(Member member) {
-        return null;
+        SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
+        jdbcInsert.withTableName("member").usingGeneratedKeyColumns("id");
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("name", member.getName());
+        Number key = jdbcInsert.executeAndReturnKey(new
+                MapSqlParameterSource(parameters));
+        member.setId(key.longValue());
+        return member;
     }
 
     @Override
     public Optional<Member> findById(Long id) {
 //        return Optional.empty();
-        return jdbcTemplate.query("select * from member where id=?", );
+//        jdbcTemplate.query("select * from member where id=?", memberRowMapper());
+        List<Member> result = jdbcTemplate.query("select * from member where id = ?", memberRowMapper(),id);
+        return result.stream().findAny();
     }
 
     @Override
     public Optional<Member> findByName(String name) {
-        return Optional.empty();
+        List<Member> result = jdbcTemplate.query("select * from member where name = ?", memberRowMapper(), name);
+        return result.stream().findAny();
     }
 
     @Override
     public List<Member> findAll() {
-        return null;
+        return jdbcTemplate.query("select * from member", memberRowMapper());
     }
 
     private RowMapper<Member> memberRowMapper(){
@@ -54,7 +66,7 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
             member.setId(rs.getLong("id"));
             member.setName(rs.getString("name"));
             return member;
-        }
+        };
     }
 
 }
