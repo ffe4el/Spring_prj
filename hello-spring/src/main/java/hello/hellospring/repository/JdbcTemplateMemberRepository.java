@@ -44,15 +44,16 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
     }
 
     @Override
+    public List<Member> findAll() {
+        return jdbcTemplate.query("select * from member", memberRowMapper());
+    }
+
+    @Override
     public Optional<Member> findByName(String name) {
         List<Member> result = jdbcTemplate.query("select * from member where name = ?", memberRowMapper(), name);
         return result.stream().findAny();
     }
 
-    @Override
-    public List<Member> findAll() {
-        return jdbcTemplate.query("select * from member", memberRowMapper());
-    }
 
     private RowMapper<Member> memberRowMapper(){
 //        return new RowMapper<Member>() {  => 이걸 람다식으로 바꾼게 밑에꺼
