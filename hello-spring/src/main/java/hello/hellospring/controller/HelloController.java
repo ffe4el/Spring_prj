@@ -38,7 +38,7 @@ public class HelloController {
         //객체 만들기
         Hello hello = new Hello();
         hello.setName(name);
-        //리턴값으로 객체 넘겨주기 => 웹에 제이슨 방식으로 나온다.
+        //리턴값으로 객체 넘겨주기 => 웹에 json 방식으로 나온다.
         return hello;
     }
     static class Hello{
