@@ -21,10 +21,12 @@ class MemberServiceTest {
     @BeforeEach
     public void beforeEach(){
         memberRepository = new MemoryMemberRepository();
+
+        //clearStore 함수를 쓰기 위해 불러옴
         memberService = new MemberService(memberRepository);
     }
 
-    @AfterEach //각 함수가 끝날때s마다 실행
+    @AfterEach //각 함수가 끝날때마다 실행
     public void afterEach(){
         memberRepository.clearStore();
     }
@@ -52,11 +54,12 @@ class MemberServiceTest {
 
         //when
         memberService.join(member1);
+        //람다식 사용
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> memberService.join(member2));
         assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
 
 
-
+//try, catch 문이 사용가능하긴 하지만 위의 방법이 더 유용함
 //        try{
 //            memberService.join(member2);
 //            fail();

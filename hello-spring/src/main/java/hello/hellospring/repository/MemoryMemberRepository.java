@@ -11,6 +11,7 @@ import java.util.*;
 public class MemoryMemberRepository implements MemberRepository{
     //이 맵과 해쉬맵은 뭐지...?
     private static Map<Long, Member> store = new HashMap<>();
+    //sequence는 key 값을 생성해주는 역할
     private static long sequece = 0L;
 
     @Override

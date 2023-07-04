@@ -11,6 +11,7 @@ public class MemoryMemberRepositoryTest {
     MemoryMemberRepository repository = new MemoryMemberRepository();
 
     @AfterEach //각 함수가 끝날때마다 실행
+    //각 테스트가 끝날때마다 메모리 초기화!
     public void afterEach(){
         repository.clearStore();
     }
@@ -48,7 +49,7 @@ public class MemoryMemberRepositoryTest {
         repository.save(member1);
 
         Member member2 = new Member();
-        member1.setName("spring2");
+        member2.setName("spring2");
         repository.save(member2);
 
         //repository.findAll(); 다쓰고 뒤에 cmd+shift+v 누르면 자동완성
