@@ -34,6 +34,7 @@ public class MemberController {
 
         memberService.join(member);
 
+        //가입이 완료 되었으면 홈화면으로 리다이렉트
         return "redirect:/";
     }
 
