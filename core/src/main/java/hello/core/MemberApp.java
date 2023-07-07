@@ -7,7 +7,9 @@ import hello.core.member.MemberServiceImpl;
 
 public class MemberApp {
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
+//        MemberService memberService = new MemberServiceImpl();
         //1L은 long타입이어서 붙여준것이기 때문에 안붙이고 그냥 1이라고 치면 오류가남
         Member member = new Member(1L, "memberA", Grade.VIP);
         memberService.join(member);
