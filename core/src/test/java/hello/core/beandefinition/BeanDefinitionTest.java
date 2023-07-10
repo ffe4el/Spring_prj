@@ -7,7 +7,7 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class BeanDefinitionTest {
-    AnnotationConfigApplicationContext ac =  new AnnotationConfigApplicationContext(AppConfig .class);
+    AnnotationConfigApplicationContext ac =  new AnnotationConfigApplicationContext(AppConfig.class);
 
     @Test
     @DisplayName("빈 설정 메타정도 확인")

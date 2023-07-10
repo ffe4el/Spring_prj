@@ -64,7 +64,7 @@ public class ApplicationContextSameBeanFindTest {
 
 
     @Configuration
-    static class TestConfig {
+    public static class TestConfig {
 
         @Bean
         public DiscountPolicy rateDiscountPolicy() {
