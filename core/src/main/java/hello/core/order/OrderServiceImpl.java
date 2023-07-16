@@ -1,5 +1,6 @@
 package hello.core.order;
 
+import hello.core.annotation.MainDiscountPolicy;
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
 import hello.core.member.Member;
@@ -14,9 +15,7 @@ import org.springframework.stereotype.Component;
 //@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService{
     // 멤버 가져오기
-    @Autowired
     private final MemberRepository memberRepository;
-    @Autowired
     private final DiscountPolicy discountPolicy;
 
 
@@ -34,9 +33,9 @@ public class OrderServiceImpl implements OrderService{
 
     //@RequiredArgsConstructor 롬복 어노테이션이 생성자를 자동으로 만들어줌
     @Autowired
-    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
-//        System.out.println("memberRepository = " + memberRepository);
-//        System.out.println("discountPolicy = " + discountPolicy);
+    public OrderServiceImpl(MemberRepository memberRepository, @MainDiscountPolicy DiscountPolicy discountPolicy) {
+        System.out.println("memberRepository = " + memberRepository);
+        System.out.println("discountPolicy = " + discountPolicy);
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
