@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-@MainDiscountPolicy
 @Component
+@MainDiscountPolicy
 public class RateDiscountPolicy implements DiscountPolicy{
     private int discountPercent = 10;
 
