@@ -3,12 +3,13 @@ package hello.core.common;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
 @Component
-@Scope(value = "request")
+@Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class MyLogger {
 
     private String uuid;
@@ -24,14 +25,14 @@ public class MyLogger {
     }
 
     @PostConstruct
-    public void init(){
+    public void init(){ //1번째로 출력
         uuid = UUID.randomUUID().toString();
         System.out.println("[" + uuid + "] request scope bean create : " + this);
 
     }
 
     @PreDestroy
-    public void close(){
+    public void close(){ //4번째로 출력
         System.out.println();
         System.out.println("[" + uuid + "] request scope bean close : " + this);
     }

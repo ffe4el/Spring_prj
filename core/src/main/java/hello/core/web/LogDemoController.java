@@ -14,16 +14,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LogDemoController {
 
     private final LogDemoService logDemoService;
-    private final ObjectProvider<MyLogger> myLoggerProvider;
+    private final MyLogger myLogger;
 
     @RequestMapping("log-demo")
     @ResponseBody //화면이 없어도(원래는 뷰-템플릿을 거쳐서 나가야되는데) 밑에 문자를 그대로 응답으로 보낼 수 있다.
     public String logDemo(HttpServletRequest request) {
         String requestURL = request.getRequestURL().toString();
-        MyLogger myLogger = myLoggerProvider.getObject();
+//        MyLogger myLogger = myLoggerProvider.getObject();
+
+        System.out.println("myLogger = " + myLogger.getClass());
         myLogger.setRequestURL(requestURL);
 
-        myLogger.log("controller test");
+        myLogger.log("controller test"); //2번째로 출력
+//        Thread.sleep(1000);
         logDemoService.logic("testId");
         return "OK";
     }
