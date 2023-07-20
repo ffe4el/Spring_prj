@@ -24,7 +24,6 @@ public class LogDemoController {
 
         System.out.println("myLogger = " + myLogger.getClass());
         myLogger.setRequestURL(requestURL);
-        
 
         myLogger.log("controller test"); //2번째로 출력
 //        Thread.sleep(1000);
