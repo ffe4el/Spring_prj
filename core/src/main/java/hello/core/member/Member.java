@@ -10,7 +10,6 @@ public class Member {
         this.name = name;
         this.grade = grade;
     }
-
     public Long getId() {
         return id;
     }
