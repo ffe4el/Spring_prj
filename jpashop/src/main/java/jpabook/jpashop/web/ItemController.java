@@ -64,11 +64,11 @@ public class ItemController {
         form.setIsbn(item.getIsbn());
 
         model.addAttribute("form", form);
-        return "item/updateItem";
+        return "items/updateItemForm";
     }
 
     //상품 수정 폼
-    @GetMapping(value = "/items/{itemId}/edit")
+    @PostMapping(value = "/items/{itemId}/edit")
     public String updateItem(@PathVariable String itemId,@ModelAttribute("form") BookForm form){
 
         Book book = new Book();
