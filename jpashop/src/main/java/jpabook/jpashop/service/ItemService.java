@@ -19,7 +19,7 @@ public class ItemService {
     public void saveItem(Item item) {
         itemRepository.save(item);
     }
-    
+
 
     @Transactional
     public void updateItem(Long itemId, Book param) {
