@@ -20,7 +20,7 @@ public class ItemController {
     private final ItemService itemService;
 
     //상품 등록
-    @GetMapping("/item/new")
+    @GetMapping("/items/new")
     public String createForm(Model model) {
         model.addAttribute("form", new BookForm());
         return "items/createItemForm";
@@ -28,7 +28,7 @@ public class ItemController {
     }
 
     //상품 등록
-    @PostMapping("/item/new")
+    @PostMapping("/items/new")
     public String create(BookForm form) {
 
         Book book = new Book();
