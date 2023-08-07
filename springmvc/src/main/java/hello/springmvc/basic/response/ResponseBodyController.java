@@ -57,7 +57,7 @@ public class ResponseBodyController {
         HelloData helloData = new HelloData();
         helloData.setUsername("userA");
         helloData.setAge(20);
-        
+
         return new ResponseEntity<>(helloData, HttpStatus.OK);
     }
 
